@@ -47,6 +47,11 @@
         <p>{{ booklist[showBookId].description }}</p>
       </template></b-modal
     >
+
+    <div class="text-center">
+      <b-button variant="primary" @click="beforePage">before</b-button>
+      <b-button variant="primary" @click="nextPage">next</b-button>
+    </div>
   </div>
 </template>
     </b-modal>
@@ -73,12 +78,17 @@ export default {
     getFirstPage: async function () {
       let query = booklist.orderBy("title");
       query = query.limit(this.perPage);
-      await query.get().then((doc) => {
-        if (doc.empty) return;
-        this.booklist = doc.docs.map((x) => x.data());
-        this.start = doc.docs[0];
-        this.end = doc.docs[doc.docs.length - 1];
-      });
+      await query
+        .get()
+        .then((doc) => {
+          if (doc.empty) return;
+          this.booklist = doc.docs.map((x) => x.data());
+          this.start = doc.docs[0];
+          this.end = doc.docs[doc.docs.length - 1];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     nextPage: async function () {
       let query = booklist.orderBy("title");
@@ -117,8 +127,8 @@ export default {
       return text;
     },
   },
-  fetch: async function () {
-    this.getFirstPage();
+  created: async function () {
+    if (process.client) this.getFirstPage();
   },
 };
 </script>
