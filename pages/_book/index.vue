@@ -97,7 +97,7 @@ export default {
     },
     beforePage: async function () {
       let query = booklist.orderBy("title");
-      query = query.endBefore(this.start).limit(this.perPage);
+      query = query.endBefore(this.start).limitToLast(this.perPage);
       await query
         .get()
         .then((doc) => {
