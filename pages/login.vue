@@ -55,7 +55,7 @@ export default {
         })
         .then((user) => {
           console.log("login success!");
-          this.$router.push("/register");
+          this.$router.push("/");
         })
         .catch((error) => {
           console.error("login failed:" + error);
