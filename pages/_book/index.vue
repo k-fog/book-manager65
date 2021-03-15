@@ -44,7 +44,9 @@
         </div>
         <p>Author : {{ booklist[showBookId].author }}</p>
         <p>Publisher : {{ booklist[showBookId].publisher }}</p>
-        <p>{{ booklist[showBookId].description }}</p>
+        <p style="white-space: pre-line">
+          {{ booklist[showBookId].description }}
+        </p>
       </template></b-modal
     >
 
