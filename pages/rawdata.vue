@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style>
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
 </style>
